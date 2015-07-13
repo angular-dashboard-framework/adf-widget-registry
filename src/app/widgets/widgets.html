@@ -1,41 +1,42 @@
 <!-- Portfolio Grid Section -->
 <section id="{{config.portfolioLink}}">
     <div class="container">
-      <div class="row error" ng-if="status == 'loading'">
+      <div class="row error" ng-if="vm.status == 'loading'">
           <div class="col-lg-12 text-center">
               <h2>Loading...</h2>
           </div>
       </div>
-      <div class="row" ng-if="status == 'error'">
+      <div class="row" ng-if="vm.status == 'error'">
           <div class="col-lg-12 text-center">
               <h2>{{config.portfolioTitle}}</h2>
               <hr class="star-primary">
               <h4>{{error}}</h4>
           </div>
       </div>
-      <div class="row error" ng-if="status == 'loaded' && !widgets">
+      <div class="row error" ng-if="vm.status == 'loaded' && !vm.widgets">
           <div class="col-lg-12 text-center">
               <h2>Error:</h2>
               <hr class="star-primary">
               <h4>No widget available</h4>
           </div>
       </div>
-      <div class="row" ng-if="status == 'loaded' && widgets">
+      <div class="row" ng-if="vm.status == 'loaded' && vm.widgets">
           <div class="col-lg-12 text-center">
               <h2>{{config.portfolioTitle}}</h2>
               <hr class="star-primary">
           </div>
       </div>
-      <div class="row" ng-if="status == 'loaded' && widgets">
-          <div class="col-sm-4 portfolio-item" ng-repeat="widget in widgets">
+      <div class="row" ng-if="vm.status == 'loaded' && vm.widgets">
+          <div class="col-sm-4 portfolio-item" ng-repeat="widget in vm.widgets">
               <a href="#{{widget.name}}" class="portfolio-link" data-toggle="modal">
                   <div class="caption">
                       <div class="caption-content">
+                          <h4>{{widget.name}}</h4>
                           <i class="fa fa-search-plus fa-3x"></i>
                       </div>
-                      <h4>{{widget.name}}</h4>
+
                   </div>
-                  <img src="http://ironsummitmedia.github.io/startbootstrap-freelancer/img/portfolio/cabin.png" class="img-responsive" alt="">
+                  <img ng-src="/assets/images/widget-icons/{{widget.name}}.png" class="widget-icon img-responsive" alt="">
               </a>
           </div>
       </div>

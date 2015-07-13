@@ -41,11 +41,13 @@
         $routeProvider
             .when('/widgets', {
                 templateUrl: 'app/widgets/widgets.html',
-                controller: 'WidgetsCtrl'
+                controller: 'WidgetsCtrl',
+                controllerAs: 'vm'
             })
             .when('/widgets/:name', {
                 templateUrl: 'app/widgets/detail.html',
-                controller: 'WidgetDetailCtrl'
+                controller: 'WidgetDetailCtrl',
+                controllerAs: 'vm'
             })
             .otherwise({
               redirectTo: '/widgets'

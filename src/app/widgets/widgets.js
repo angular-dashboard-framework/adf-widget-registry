@@ -1,32 +1,36 @@
 /* global window */
-
-(function (angular) {
+(function() {
     'use strict';
 
-  angular.module('adf-widgets', [])
+    angular.module('adf-widgets').controller('WidgetsCtrl', controller);
+    controller.$inject = ['registryService'];
 
-    .controller('WidgetsCtrl', function($scope, registry) {
-      $scope.status = 'loading';
-      registry.getApi()
-        .then(function(response) {
-          return response;
-        })
-        .then(function(response) {
-          var url = response.data.widgets;
-          return registry.get(url);
-        })
-        .then(function(response) {
-          $scope.status = 'loaded';
-          $scope.widgets = response.data;
-        }, function(reason) {
-          $scope.status = 'error';
-          $scope.error = reason;
-        });
+    function controller(registryService) {
+        var vm = this;
 
-    })
-    .controller('WidgetDetailCtrl', function($scope) {
+        activate();
 
+        function activate() {
 
-    });
+          vm.status = 'loading';
 
-})(angular);
+          registryService.getApi()
+            .then(function(response) {
+              return response;
+            })
+            .then(function(response) {
+              var url = response.data.widgets;
+              return registryService.get(url);
+            })
+            .then(function(response) {
+              vm.status = 'loaded';
+              vm.widgets = response.data;
+            }, function(reason) {
+              vm.status = 'error';
+              vm.error = reason;
+            });
+
+        }
+    }
+
+})();
