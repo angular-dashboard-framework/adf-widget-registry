@@ -28,42 +28,43 @@ var bower = require('bower');
 var _ = require('lodash');
 
 // define registry module
-module.exports = {
+module.exports = function(apiContext) {
 
-  // fetch all widget informations
-  get: function(name){
-    var deferred = Q.defer();
-    bower.commands
-      .info(name)
-      .on('end', function(info) {
-        deferred.resolve(info);
-      })
-      .on('error', function(error){
-        deferred.reject(error);
-      });
-    return deferred.promise;
-  },
-
-  // fetch a list of all widgets
-  getAll: function(){
-    var self = this;
-    var deferred = Q.defer();
-    bower.commands
-      .search('adf-widget', {})
-      .on('end', function(widgets) {
-        var result = [];
-        _.forEach(widgets, function(widget){
-          result.push({
-            name: widget.name,
-            link: '/v1/widgets/' + widget.name
-          });
+  return {
+    // fetch all widget informations
+    get: function(name){
+      var deferred = Q.defer();
+      bower.commands
+        .info(name)
+        .on('end', function(info) {
+          deferred.resolve(info);
         })
-        deferred.resolve(result);
-      })
-      .on('error', function(error){
-        deferred.reject(error);
-      });
-    return deferred.promise;
-  }
+        .on('error', function(error){
+          deferred.reject(error);
+        });
+      return deferred.promise;
+    },
 
+    // fetch a list of all widgets
+    getAll: function(){
+      var self = this;
+      var deferred = Q.defer();
+      bower.commands
+        .search('adf-widget', {})
+        .on('end', function(widgets) {
+          var result = [];
+          _.forEach(widgets, function(widget){
+            result.push({
+              name: widget.name,
+              link: apiContext.contextPath + '/v1/widgets/' + widget.name
+            });
+          })
+          deferred.resolve(result);
+        })
+        .on('error', function(error){
+          deferred.reject(error);
+        });
+      return deferred.promise;
+    }
+  }
 }

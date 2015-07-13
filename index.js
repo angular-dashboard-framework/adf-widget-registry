@@ -26,24 +26,37 @@
 var express = require('express');
 var compression = require('compression');
 var bodyParser = require('body-parser');
-var registry = require('./widget-registry');
+
+var apiContext = {
+  contextPath: '/api'
+};
+
+var appContext = {
+  contextPath: '/public'
+};
+
+var registry = require('./widget-registry')(apiContext);
+
+
 var app = express();
 
 // configure express
 app.use(compression());
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + appContext.contextPath));
+
+var apiRouter = express.Router();
 
 // rest api endpoint to list available endpoints
-app.get('/v1', function(req, res, next){
+apiRouter.get('/v1', function(req, res, next){
   var endpoints = {
-    widgets: '/v1/widgets'
+    widgets: apiContext.contextPath + '/v1/widgets'
   };
   res.json(endpoints);
 });
 
 // rest api endpoint to list all widgets
-app.get('/v1/widgets', function(req, res, next){
+apiRouter.get('/v1/widgets', function(req, res, next){
   registry.getAll().then(function(widgets){
     res.json(widgets);
   }).catch(function (e) {
@@ -56,7 +69,7 @@ app.get('/v1/widgets', function(req, res, next){
 });
 
 // rest api endpoint to get single widget by its name
-app.get('/v1/widgets/:name', function(req, res, next){
+apiRouter.get('/v1/widgets/:name', function(req, res, next){
   var name = req.params.name;
   registry.get(name).then(function(widget){
     res.json(widget);
@@ -69,6 +82,8 @@ app.get('/v1/widgets/:name', function(req, res, next){
   });;
 });
 
+app.use(apiContext.contextPath, apiRouter);
+
 // handle errors
 app.use(function(err, req, res, next) {
   if (!err.status){
@@ -79,6 +94,6 @@ app.use(function(err, req, res, next) {
 });
 
 // start server
-var server = app.listen(3000, function() {
+var server = app.listen(3100, function() {
     console.log('Listening on port %d', server.address().port);
 });
