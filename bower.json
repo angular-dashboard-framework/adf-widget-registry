@@ -24,7 +24,8 @@
     "angular-loading-bar": "0.7.x",
     "angular-bootstrap": "0.12.x",
     "angular-moment": "~0.9.0",
-    "moment": "~2.8.4"
+    "moment": "~2.8.4",
+    "ngDialog": "~0.4.0"
   },
   "devDependencies": {
     "less": "1.7.4"

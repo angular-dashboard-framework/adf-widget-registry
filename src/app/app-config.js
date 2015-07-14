@@ -30,9 +30,19 @@
           ]);
       })
 
-      .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+      .config(function(cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = false;
-      }])
+      })
+
+      .config(function(ngDialogProvider) {
+          ngDialogProvider.setDefaults({
+              className: 'ngdialog-theme-default',
+              plain: false,
+              showClose: true,
+              closeByDocument: true,
+              closeByEscape: true
+          });
+      })
 
       .config(function ($routeProvider, $locationProvider) {
 
@@ -45,8 +55,8 @@
                 controllerAs: 'vm'
             })
             .when('/widgets/:name', {
-                templateUrl: 'app/widgets/detail.html',
-                controller: 'WidgetDetailCtrl',
+                templateUrl: 'app/widgets/widgets.html',
+                controller: 'WidgetsCtrl',
                 controllerAs: 'vm'
             })
             .otherwise({

@@ -9,6 +9,7 @@
       'ngSanitize',
       'ngResource',
       'ngRoute',
+      'ngDialog',
       'adf-widgets'
       ]);
 

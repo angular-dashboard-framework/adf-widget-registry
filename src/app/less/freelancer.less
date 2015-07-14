@@ -29,6 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 hr.star-light,
+hr.star-dialog,
 hr.star-warning,
 hr.star-primary {
     padding: 0;
@@ -40,19 +41,29 @@ hr.star-primary {
 }
 
 hr.star-light:after,
+hr.star-dialog:after,
 hr.star-warning:after,
 hr.star-primary:after {
     content: "\f005";
     font-family: FontAwesome;
     display: inline-block;
     position: relative;
-    top: -0.8em;
+    top: -0.7em;
     font-size: 2em;
     padding: 0 0.25em;
 }
 
+hr.star-dialog {
+	border-color: inherit;
+}
+
+hr.star-dialog:after {
+	background-color: #f0f0f0;
+	color: inherit;
+}
+
 hr.star-light {
-    border-color: white;
+  border-color: white;
 }
 
 hr.star-light:after {
@@ -208,7 +219,19 @@ section.success {
             display: block;
             position: relative;
             max-width: 400px;
+						height: 260px;
             margin: 0 auto;
+						background-color: #f9f9f9;
+
+						.title {
+								margin: 0;
+								position: absolute;
+								top: 153px;
+								width: 100%;
+								text-align: center;
+								opacity: 1;
+						}
+
             .caption {
                 background: fade(@brand-success, 90%);
                 position: absolute;
@@ -231,24 +254,45 @@ section.success {
                     margin-top: -12px;
                     color: white;
                     i {
-                        margin-top: 30px;
+                        margin-top: 65px;
                     }
                     h3,
                     h4 {
                         margin: 0;
-												margin-top: -60px;
+												margin-top: -90px;
                     }
                 }
+
             }
         }
     }
     * {
         z-index: 2;
     }
+
+		.widget-icon.img-responsive {
+			height: 100px;
+			margin-left: auto;
+			margin-right: auto;
+			padding-top: 10px;
+		}
+
 }
 
+#widgets {
+	.portfolio-item:hover {
+		.portfolio-link {
+			.title {
+				opacity: 0;
+			}
+			.caption {
+					opacity: 1;
+			}
+		}
+	}
+}
 @media(min-width:767px) {
-    #portfolio {
+    #widgets {
         .portfolio-item {
             margin: 0 0 30px;
         }

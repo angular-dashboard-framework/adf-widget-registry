@@ -28,14 +28,15 @@
       </div>
       <div class="row" ng-if="vm.status == 'loaded' && vm.widgets">
           <div class="col-sm-4 portfolio-item" ng-repeat="widget in vm.widgets">
-              <a href="#{{widget.name}}" class="portfolio-link" data-toggle="modal">
+              <a href="/#/widgets/{{widget.name}}" class="portfolio-link" data-toggle="modal">
                   <div class="caption">
                       <div class="caption-content">
-                          <h4>{{widget.name}}</h4>
                           <i class="fa fa-search-plus fa-3x"></i>
+                          <h4>{{widget.name}}</h4>
                       </div>
 
                   </div>
+                  <h4 class="title">{{widget.name}}</h4>
                   <img ng-src="/assets/images/widget-icons/{{widget.name}}.png" class="widget-icon img-responsive" alt="">
               </a>
           </div>
