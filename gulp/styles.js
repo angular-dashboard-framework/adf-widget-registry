@@ -11,13 +11,12 @@ gulp.task('styles', function () {
   var lessOptions = {
     paths: [
       'bower_components',
-      paths.src + '/app',
-      paths.src + '/components'
+      paths.src + '/app'
     ]
   };
 
   var injectFiles = gulp.src([
-    paths.src + '/{app,components}/**/*.less',
+    paths.src + '/app/**/*.less',
     '!' + paths.src + '/app/index.less',
     '!' + paths.src + '/app/vendor.less'
   ], { read: false });
@@ -25,7 +24,6 @@ gulp.task('styles', function () {
   var injectOptions = {
     transform: function(filePath) {
       filePath = filePath.replace(paths.src + '/app/', '');
-      filePath = filePath.replace(paths.src + '/components/', '../components/');
       return '@import \'' + filePath + '\';';
     },
     starttag: '// injector',

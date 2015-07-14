@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 
 var paths = gulp.paths;
+var mod = gulp.module;
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -10,22 +11,24 @@ var $ = require('gulp-load-plugins')({
 
 gulp.task('partials', function () {
   return gulp.src([
-    paths.src + '/{app,components}/**/*.html',
-    paths.tmp + '/{app,components}/**/*.html'
-  ])
+      paths.src + '/app/**/*.html',
+      paths.tmp + '/serve/app/**/*.html'
+    ])
     .pipe($.minifyHtml({
       empty: true,
       spare: true,
       quotes: true
     }))
-    .pipe($.angularTemplatecache('templateCacheHtml.js', {
-      module: module.name
+    .pipe($.angularTemplatecache('templates.js', {
+      module: mod.name,
+      root: 'app'
+      //templateBody: '$templateCache.put(\'app/<%= url %>\',\'<%= contents %>\');'
     }))
-    .pipe(gulp.dest(paths.tmp + '/'));
+    .pipe(gulp.dest(paths.tmp + '/partials/'));
 });
 
 gulp.task('html', ['inject', 'partials'], function () {
-  var partialsInjectFile = gulp.src(paths.tmp + '/templateCacheHtml.js', { read: false });
+  var partialsInjectFile = gulp.src(paths.tmp + '/partials/templates.js', { read: false });
   var partialsInjectOptions = {
     starttag: '<!-- inject:partials -->',
     ignorePath: paths.tmp + '/partials',
@@ -42,7 +45,7 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(assets = $.useref.assets())
     .pipe($.rev())
     .pipe(jsFilter)
-    .pipe($.ngAnnotate())
+    .pipe($.ngAnnotate()) //No need to annotate w/ John Papa guidelines
     .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
     .pipe(jsFilter.restore())
     .pipe(cssFilter)

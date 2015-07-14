@@ -294,6 +294,7 @@ h6 {
   font-weight: 700;
 }
 hr.star-light,
+hr.star-dialog,
 hr.star-warning,
 hr.star-primary {
   padding: 0;
@@ -304,15 +305,23 @@ hr.star-primary {
   margin: 25px auto 30px;
 }
 hr.star-light:after,
+hr.star-dialog:after,
 hr.star-warning:after,
 hr.star-primary:after {
   content: "\f005";
   font-family: FontAwesome;
   display: inline-block;
   position: relative;
-  top: -0.8em;
+  top: -0.7em;
   font-size: 2em;
   padding: 0 0.25em;
+}
+hr.star-dialog {
+  border-color: inherit;
+}
+hr.star-dialog:after {
+  background-color: #f0f0f0;
+  color: inherit;
 }
 hr.star-light {
   border-color: white;
@@ -443,7 +452,17 @@ section.success a.active {
   display: block;
   position: relative;
   max-width: 400px;
+  height: 260px;
   margin: 0 auto;
+  background-color: #f9f9f9;
+}
+#widgets .portfolio-item .portfolio-link .title {
+  margin: 0;
+  position: absolute;
+  top: 153px;
+  width: 100%;
+  text-align: center;
+  opacity: 1;
 }
 #widgets .portfolio-item .portfolio-link .caption {
   background: rgba(24, 188, 156, 0.9);
@@ -469,18 +488,30 @@ section.success a.active {
   color: white;
 }
 #widgets .portfolio-item .portfolio-link .caption .caption-content i {
-  margin-top: 30px;
+  margin-top: 65px;
 }
 #widgets .portfolio-item .portfolio-link .caption .caption-content h3,
 #widgets .portfolio-item .portfolio-link .caption .caption-content h4 {
   margin: 0;
-  margin-top: -60px;
+  margin-top: -90px;
 }
 #widgets * {
   z-index: 2;
 }
+#widgets .widget-icon.img-responsive {
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+}
+#widgets .portfolio-item:hover .portfolio-link .title {
+  opacity: 0;
+}
+#widgets .portfolio-item:hover .portfolio-link .caption {
+  opacity: 1;
+}
 @media (min-width: 767px) {
-  #portfolio .portfolio-item {
+  #widgets .portfolio-item {
     margin: 0 0 30px;
   }
 }
@@ -677,7 +708,6 @@ footer .footer-below {
   width: 100%;
   color: white;
 }
-.widget-icon.img-responsive {
-  height: 100px;
-  align: center;
+li.versions li:first-child {
+  color: #18bc9c;
 }

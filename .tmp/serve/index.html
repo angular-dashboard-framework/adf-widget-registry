@@ -16,6 +16,8 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="../bower_components/angular-loading-bar/build/loading-bar.css" />
+        <link rel="stylesheet" href="../bower_components/ngDialog/css/ngDialog.css" />
+        <link rel="stylesheet" href="../bower_components/ngDialog/css/ngDialog-theme-default.css" />
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -58,8 +60,6 @@
 
         <div ng-include="'app/sections/about.html'"></div>
 
-        <div ng-include="'app/sections/contact.html'"></div>
-
         <div ng-include="'app/sections/footer.html'"></div>
 
         <!-- app -->
@@ -80,6 +80,7 @@
         <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="../bower_components/moment/moment.js"></script>
         <script src="../bower_components/angular-moment/angular-moment.js"></script>
+        <script src="../bower_components/ngDialog/js/ngDialog.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -94,7 +95,6 @@
         <script src="app/app-config.js"></script>
         <!-- endinject -->
 
-        <!--script  data-build="exclude">$("#origin").html(xdomain.origin);</script-->
         <!-- inject:partials -->
         <!-- angular templates will be automatically converted in js and inserted here -->
         <!-- endinject -->

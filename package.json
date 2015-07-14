@@ -14,7 +14,7 @@
   "contributors": [
     {
       "name": "Ivan Saorin",
-      "email": "ivan.saorin@gmail.com"
+      "email": "ivan.saorin(at)gmail.com"
     }
   ],
   "dependencies": {
@@ -22,9 +22,10 @@
     "bower": "1.4.1",
     "compression": "^1.1.0",
     "express": "4.x",
+    "gulp-ng-annotate": "^1.0.0",
+    "gulp-util": "^3.0.5",
     "lodash": "^3.10.0",
-    "q": "^1.4.1",
-    "gulp-util": "^3.0.5"
+    "q": "^1.4.1"
   },
   "devDependencies": {
     "browser-sync": "~1.7.1",
@@ -32,7 +33,7 @@
     "del": "~0.1.3",
     "gulp": "~3.8.10",
     "gulp-angular-filesort": "~1.0.4",
-    "gulp-angular-templatecache": "~1.4.2",
+    "gulp-angular-templatecache": "~1.7.0",
     "gulp-autoprefixer": "~2.0.0",
     "gulp-consolidate": "~0.1.2",
     "gulp-csso": "~0.2.9",
@@ -44,7 +45,7 @@
     "gulp-less": "~1.3.6",
     "gulp-load-plugins": "~0.7.1",
     "gulp-minify-html": "~0.1.7",
-    "gulp-ng-annotate": "~0.3.6",
+    "gulp-ng-annotate": "~1.0.0",
     "gulp-order": "1.1.1",
     "gulp-protractor": "~0.0.11",
     "gulp-rename": "~1.2.0",

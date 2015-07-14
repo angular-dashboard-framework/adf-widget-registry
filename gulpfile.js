@@ -14,7 +14,7 @@ gulp.api = {
 
 gulp.paths = {
 	src: 'src',
-	dist: 'dist',
+	dist: 'public',
 	tmp: '.tmp',
 	e2e: 'e2e'
 };
