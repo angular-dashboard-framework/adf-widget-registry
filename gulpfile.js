@@ -1,0 +1,26 @@
+'use strict';
+
+// this will use a private gulp instance
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+
+gulp.module = {
+	name: 'adf-widget-registry'
+};
+
+gulp.api = {
+	name: 'adf-widget-registry'
+};
+
+gulp.paths = {
+	src: 'src',
+	dist: 'public',
+	tmp: '.tmp',
+	e2e: 'e2e'
+};
+
+require('require-dir')('./gulp');
+
+gulp.task('default', ['clean'], function () {
+		gulp.start('build');
+});

@@ -1,0 +1,39 @@
+<!-- Portfolio Modals -->
+<h2 style="text-align: center">{{vm.widget.name}}</h2>
+<hr class="star-dialog">
+<img ng-src="/assets/images/widget-icons/{{vm.widget.name}}.png" class="widget-icon img-responsive img-centered" alt="" style="width: 140px;
+  margin-bottom: 30px;">
+<p>{{vm.widget.latest.description}}</p>
+
+<ul class="item-details">
+   <li>Homepage:
+       <strong><a href="{{vm.widget.latest.homepage}}" target="_blank">Gihub repository</a></strong>
+   </li>
+   <li class="versions">Versions (latest is highlighted):
+     <ul class="list-inline item-details">
+        <li ng-repeat="version in vm.widget.versions">
+            <strong>{{version}}</strong>
+        </li>
+     </ul>
+   </li>
+   <li>Keywords:
+     <ul class="list-inline item-details">
+        <li ng-repeat="keyword in vm.widget.latest.keywords">
+            <strong>{{keyword}}</strong>
+        </li>
+     </ul>
+   </li>
+   <li>Dependencies:
+     <ul class="item-details">
+        <li ng-repeat="(id, obj) in vm.widget.latest.dependencies">
+            <strong>{{id}}</strong> {{obj}}
+        </li>
+     </ul>
+   </li>
+   <li ng-if="vm.widget.images">Images:</li>
+</ul>
+<div ng-repeat="image in vm.widget.images">
+  <img ng-src="{{image.url}}" class="widget-icon img-responsive img-centered" alt="" style="width: 380px;
+    margin: 20px 0px 10px 20px;">
+  <strong style="margin-left: 20px">{{image.caption}}</strong>
+<div>
