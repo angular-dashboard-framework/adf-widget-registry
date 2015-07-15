@@ -13,7 +13,7 @@ gulp.api = {
 };
 
 gulp.paths = {
-	src: 'src',
+	src: 'client',
 	dist: 'dist/public',
 	tmp: '.tmp',
 	e2e: 'e2e',

@@ -11,7 +11,7 @@
         <!-- Fav icons -->
         <link rel="shortcut icon" href="images/favicon.png">
 
-        <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+        <!-- build:css({.tmp/serve,client}) styles/vendor.css -->
         <link rel="stylesheet" href="app/vendor.css">
         <!-- bower:css -->
         <!-- run `gulp wiredep` to automaticaly populate bower styles dependencies -->
@@ -24,7 +24,7 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        <!-- build:css({.tmp/serve,src}) styles/app.css -->
+        <!-- build:css({.tmp/serve,client}) styles/app.css -->
         <!-- inject:css -->
         <!-- css files will be automaticaly insert here -->
         <!-- endinject -->
@@ -60,13 +60,13 @@
         <div ng-include="'app/sections/footer.html'"></div>
 
         <!-- app -->
-        <!-- build:js(src) scripts/vendor.js -->
+        <!-- build:js(client) scripts/vendor.js -->
         <!-- bower:js -->
         <!-- run `gulp wiredep` to automaticaly populate bower script dependencies -->
         <!-- endbower -->
         <!-- endbuild -->
 
-        <!-- build:js({.tmp/serve,.tmp/partials,../union-core/src,src}) scripts/app.js -->
+        <!-- build:js({.tmp/serve,.tmp/partials,../union-core/src,client}) scripts/app.js -->
         <!-- inject:js -->
         <!-- js files will be automaticaly insert here -->
         <!-- endinject -->
