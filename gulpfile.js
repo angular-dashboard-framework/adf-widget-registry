@@ -14,9 +14,11 @@ gulp.api = {
 
 gulp.paths = {
 	src: 'src',
-	dist: 'public',
+	dist: 'dist/public',
 	tmp: '.tmp',
-	e2e: 'e2e'
+	e2e: 'e2e',
+	server: 'server',
+	distServer: 'dist'
 };
 
 require('require-dir')('./gulp');

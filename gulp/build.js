@@ -88,8 +88,13 @@ gulp.task('misc', function () {
     .pipe(gulp.dest(paths.dist + '/'));
 });
 
-gulp.task('clean', function (done) {
-  $.del([paths.dist + '/', paths.tmp + '/'], done);
+gulp.task('server', function () {
+  return gulp.src(paths.server + '/*')
+    .pipe(gulp.dest(paths.distServer));
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'fontawesome', 'misc']);
+gulp.task('clean', function (done) {
+  $.del([paths.dist + '/', paths.tmp + '/', paths.distServer + '/'], done);
+});
+
+gulp.task('build', ['html', 'images', 'fonts', 'fontawesome', 'misc', 'server']);

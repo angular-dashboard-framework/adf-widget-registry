@@ -10,6 +10,8 @@ var browserSync = require('browser-sync');
 
 var middleware = require('./proxy');
 
+var nodemon = require('nodemon');
+
 function browserSyncInit(baseDir, files, browser) {
   browser = browser === undefined ? 'default' : browser;
 
@@ -31,7 +33,17 @@ function browserSyncInit(baseDir, files, browser) {
   });
 }
 
-gulp.task('serve', ['watch'], function () {
+gulp.task('serveapi', function (cb) {
+	var called = false;
+	return nodemon({script: paths.server + '/index.js'}).on('start', function () {
+		if (!called) {
+			called = true;
+			cb();
+		}
+	});
+});
+
+gulp.task('serve', ['serveapi', 'watch'], function () {
   browserSyncInit([
     paths.tmp + '/serve',
     paths.src,
@@ -45,14 +57,14 @@ gulp.task('serve', ['watch'], function () {
   ]);
 });
 
-gulp.task('serve:dist', ['build'], function () {
+gulp.task('serve:dist', ['build', 'serveapi'], function () {
   browserSyncInit(paths.dist);
 });
 
-gulp.task('serve:e2e', ['inject'], function () {
+gulp.task('serve:e2e', ['inject', 'serveapi'], function () {
   browserSyncInit([paths.tmp + '/serve', paths.src], null, []);
 });
 
-gulp.task('serve:e2e-dist', ['build'], function () {
+gulp.task('serve:e2e-dist', ['build', 'serveapi'], function () {
   browserSyncInit(paths.dist, null, []);
 });

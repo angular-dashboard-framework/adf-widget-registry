@@ -38,12 +38,7 @@ npm install
 bower install
 ```
 
-You can start the repository, by starting the nodejs server and using the serve gulp task:
-
-```bash
-node index.js
-```
-Now the API is running at http://localhost:3100/api
+You can start the repository, by using the serve gulp task:
 
 ```bash
 gulp serve
@@ -51,7 +46,7 @@ gulp serve
 
 Now you open the sample in your browser at http://localhost:3000/#/widgets
 
-Or you can create a release build in the ```/public``` folder.
+Or you can create a release build in the ```/dist``` folder.
 
 ```bash
 gulp build
@@ -66,7 +61,8 @@ gulp serve:dist
 Finally you can check the built file served by the node server restarting it with
 
 ```bash
-node index.js
+gulp build
+node dist/index.js
 ```
 
 And pointing your browser to http://localhost:3100/
