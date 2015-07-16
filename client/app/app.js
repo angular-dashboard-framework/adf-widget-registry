@@ -32,6 +32,12 @@
       $scope.leavePageClass = 'bounceOut';
 
       $scope.config = config;
+
+      // mobile navigation
+      $scope.isCollapsed = true;
+      $scope.toggleNav = function(){
+        $scope.isCollapsed = !$scope.isCollapsed;
+      }
     });
 
 })(console, angular);
