@@ -22,7 +22,7 @@
 
             vm.status = 'loading';
 
-            registryService.getApi()
+            var promiseChain = registryService.getApi()
               .then(function(response) {
                 return response;
               })
@@ -36,30 +36,37 @@
               }, function(reason) {
                 vm.status = 'error';
                 vm.error = reason;
-              })
-              .then(function() {
-                if ($routeParams.name) {
-                  return ngDialog.open({
-                    template: 'app/widgets/detail.html',
-                    controller: 'WidgetDetailCtrl',
-                    controllerAs: 'vm',
-                    resolve: {
-                      widget: function() {
-                        var widget = findWidgetUrl($routeParams.name);
-                        return registryService.get(widget.link)
-                          .then(function (response) {
-                            return response.data;
-                          });
-                      }
-                    }
-                  })
-                  .closePromise.then(function (data) {
-                      console.log(data.id + ' has been dismissed.');
-                      $location.path('/#/widgets');
-                  });
-                }
               });
 
+
+            if ($routeParams.name) {
+              ngDialog.open({
+                template: 'app/widgets/detail.html',
+                controller: 'WidgetDetailCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                  widget: function() {
+                    return promiseChain
+                      .then(function() {
+                        var widget = findWidgetUrl($routeParams.name);
+                        return registryService.get(widget.link);
+                      })
+                      .then(function (response) {
+                        return response.data;
+                      });
+                  }
+                }
+              })
+              .closePromise.then(function (data) {
+                  console.log(data.id + ' has been dismissed.');
+                  $location.path('/#/widgets');
+              });
+            }
+            else {
+              promiseChain
+                .then(function (response) {
+                });              
+            }
           }
 
           vm.openModal = function(widget) {

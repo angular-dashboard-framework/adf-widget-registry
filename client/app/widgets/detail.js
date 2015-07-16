@@ -41,6 +41,10 @@
             'adf-widget-weather': {
               imagePrefix: 'adf-widget-weather',
               captions: ['Various widgets displaying temperatures from around the Word', 'Configuration dialog of the weather widget']
+            },
+            'adf-widget-wysiwyg': {
+              imagePrefix: 'adf-widget-wysiwyg',
+              captions: ['The WISIWYG widget in action', 'Configuration dialog of the WYSIWYG widget']
             }
           }
 
