@@ -36,7 +36,8 @@ gulp.task('html', ['inject', 'partials'], function () {
   };
 
   var htmlFilter = $.filter('*.html');
-  var jsFilter = $.filter('**/*.js');
+  var jsFilter = $.filter('**/app*.js');
+  var vendorJsFilter = $.filter('**/vendor*.js');
   var cssFilter = $.filter('**/*.css');
   var assets;
 
@@ -44,8 +45,14 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
     .pipe(assets = $.useref.assets())
     .pipe($.rev())
+    .pipe(debug({title: 'after rev'}))
+    .pipe(vendorJsFilter)
+    .pipe(debug({title: 'vendor'}))
+    .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
+    .pipe(vendorJsFilter.restore())
     .pipe(jsFilter)
-    .pipe($.ngAnnotate()) //No need to annotate w/ John Papa guidelines
+    .pipe(debug({title: 'app'}))
+    .pipe($.ngAnnotate())
     .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
