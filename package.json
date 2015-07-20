@@ -18,15 +18,15 @@
     }
   ],
   "dependencies": {
-    "body-parser": "^1.9.0",
+    "body-parser": "^1.13.2",
     "bower": "1.4.1",
-    "compression": "^1.1.0",
+    "compression": "^1.5.1",
     "express": "4.x",
     "lodash": "^3.10.0",
     "q": "^1.4.1"
   },
   "devDependencies": {
-    "browser-sync": "~1.7.1",
+    "browser-sync": "~2.8.0",
     "chalk": "~0.5.1",
     "del": "~0.1.3",
     "gulp": "~3.8.10",
@@ -37,7 +37,7 @@
     "gulp-csso": "~0.2.9",
     "gulp-filter": "~1.0.2",
     "gulp-flatten": "~0.0.4",
-    "gulp-inject": "~1.0.2",
+    "gulp-inject": "~1.3.1",
     "gulp-jshint": "~1.9.0",
     "gulp-karma": "~0.0.4",
     "gulp-less": "~1.3.6",
@@ -59,7 +59,7 @@
     "karma-jasmine": "~0.3.1",
     "karma-phantomjs-launcher": "~0.1.4",
     "lazypipe": "^0.2.3",
-    "main-bower-files": "~2.4.0",
+    "main-bower-files": "~2.9.0",
     "nodemon": "^1.3.7",
     "protractor": "~1.4.0",
     "require-dir": "~0.1.0",
