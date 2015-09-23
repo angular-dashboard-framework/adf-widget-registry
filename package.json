@@ -3,6 +3,7 @@
   "version": "0.1.0-SNAPSHOT",
   "description": "A simple registry for ADF Widgets",
   "homepage": "https://github.com/sdorra/adf-widget-registry",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/sdorra/adf-widget-registry.git"
@@ -23,7 +24,8 @@
     "compression": "^1.5.1",
     "express": "4.x",
     "lodash": "^3.10.0",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "require-dir": "^0.3.0"
   },
   "devDependencies": {
     "browser-sync": "~2.8.0",

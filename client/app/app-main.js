@@ -10,6 +10,7 @@
       'ngResource',
       'ngRoute',
       'ngDialog',
+      'btford.markdown',
       'adf-widgets'
       ]);
 

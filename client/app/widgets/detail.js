@@ -48,28 +48,18 @@
             }
           }
 
-          function injectImageInfo(widget) {
-            var info = imagesInfo[widget.name];
-            if (info) {
-              widget.images = [];
-
-              for (var i = 0; i < info.captions.length; i++) {
-                var image = {};
-                image.url = '/assets/images/widget-images/' + widget.name + '/' + info.imagePrefix + '-0' + (i+1) + '.png';
-                image.caption = info.captions[i];
-                widget.images.push(image);
-              }
-
-            }
-            return undefined;
-          }
-
           activate();
 
           function activate() {
             console.log('widget', widget);
-            vm.widget = widget;
-            injectImageInfo(vm.widget);
+
+            registryService.markdown(widget.showcase)
+              .then(function(response) {
+                widget.markdown = response.data;
+                vm.widget = widget;
+              },function(response) {
+                vm.widget = widget;
+              });
           }
       });
 

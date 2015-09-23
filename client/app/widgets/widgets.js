@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('adf-widgets').controller('WidgetsCtrl',
-      function controller(registryService, $routeParams, ngDialog, $location) {
+      function controller(registryService, $routeParams, ngDialog, $location, $q) {
           var vm = this;
 
           activate();
@@ -22,17 +22,10 @@
 
             vm.status = 'loading';
 
-            var promiseChain = registryService.getApi()
+            var promiseChain = registryService.widgets()
               .then(function(response) {
-                return response;
-              })
-              .then(function(response) {
-                var url = response.data.widgets;
-                return registryService.get(url);
-              })
-              .then(function(response) {
+                vm.widgets = response;
                 vm.status = 'loaded';
-                vm.widgets = response.data;
               }, function(reason) {
                 vm.status = 'error';
                 vm.error = reason;
@@ -46,14 +39,7 @@
                 controllerAs: 'vm',
                 resolve: {
                   widget: function() {
-                    return promiseChain
-                      .then(function() {
-                        var widget = findWidgetUrl($routeParams.name);
-                        return registryService.get(widget.link);
-                      })
-                      .then(function (response) {
-                        return response.data;
-                      });
+                    return registryService.widget($routeParams.name);
                   }
                 }
               })
@@ -65,7 +51,7 @@
             else {
               promiseChain
                 .then(function (response) {
-                });              
+                });
             }
           }
 

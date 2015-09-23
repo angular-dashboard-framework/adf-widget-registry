@@ -25,7 +25,8 @@
     "angular-bootstrap": "0.12.x",
     "angular-moment": "~0.9.0",
     "moment": "~2.8.4",
-    "ngDialog": "~0.4.0"
+    "ngDialog": "~0.4.0",
+    "angular-markdown-directive": "~0.3.1"
   },
   "devDependencies": {
     "less": "1.7.4"

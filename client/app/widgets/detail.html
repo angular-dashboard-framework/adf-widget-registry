@@ -1,7 +1,7 @@
 <!-- Portfolio Modals -->
 <h2 style="text-align: center">{{vm.widget.name}}</h2>
 <hr class="star-dialog">
-<img ng-src="/assets/images/widget-icons/{{vm.widget.name}}.png" class="widget-icon img-responsive img-centered" alt="" style="width: 140px;
+<img ng-src="{{vm.widget.icon}}" class="widget-icon img-responsive img-centered" alt="" style="width: 140px;
   margin-bottom: 30px;">
 <p>{{vm.widget.latest.description}}</p>
 
@@ -32,8 +32,4 @@
    </li>
    <li ng-if="vm.widget.images">Images:</li>
 </ul>
-<div ng-repeat="image in vm.widget.images">
-  <img ng-src="{{image.url}}" class="widget-icon img-responsive img-centered" alt="" style="width: 380px;
-    margin: 20px 0px 10px 20px;">
-  <strong style="margin-left: 20px">{{image.caption}}</strong>
-<div>
+<div ng-if="vm.widget.markdown" class="markdown" btf-markdown="vm.widget.markdown"></div>
